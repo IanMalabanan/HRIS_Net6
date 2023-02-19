@@ -1,4 +1,5 @@
 ﻿using HRIS.Application.Common.Mappings;
+using HRIS.Application.Common.Security;
 using HRIS.Application.Departments.Dtos;
 using MediatR;
 using System;

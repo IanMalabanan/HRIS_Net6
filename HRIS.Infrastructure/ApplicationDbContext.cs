@@ -10,11 +10,12 @@ using Microsoft.Extensions.Options;
 
 namespace HRIS.Infrastructure
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
     {
-        public ApplicationDbContext(DbContextOptions options,
-           IOptionsMonitor<Configurations.DbContextOptions> dbOptions
-            ) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
+           IOptionsMonitor<Configurations.DbContextOptions> dbOptions,
+           IOptions<OperationalStoreOptions> operationalStoreOptions
+            ) : base(options, operationalStoreOptions)
         {
             var _dbOptions = dbOptions.CurrentValue;
             if (_dbOptions.UseIsolationLevelReadUncommitted)

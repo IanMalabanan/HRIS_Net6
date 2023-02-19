@@ -1,9 +1,7 @@
-﻿using HRIS.Application.Common.Models;
+﻿using HRIS.API.Interfaces;
+using HRIS.Application.Common.Models;
 using HRIS.Infrastructure;
 using HRIS.Infrastructure.Identity;
-using HRIS.Net6_CQRSApproach.Controllers;
-using HRIS.Net6_CQRSApproach.Interfaces;
-using HRIS.Net6_CQRSApproach.Model;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -13,13 +11,13 @@ using System.Text;
 
 namespace HRIS.API.Helpers
 {
-    public class JWTConfigHelper : IJwtConfigHelper
+    public class JWTTokenGenerator : IJwtTokenGenerator
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly JwtConfig _jwtConfig;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public JWTConfigHelper(
+        public JWTTokenGenerator(
             UserManager<ApplicationUser> userManager,
                 RoleManager<IdentityRole> roleManager,
                 IOptionsMonitor<JwtConfig> optionsMonitor
@@ -42,11 +40,11 @@ namespace HRIS.API.Helpers
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim("Id", user.Id),
-                    new Claim("UserId", user.Id),
+                    new Claim(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(JwtRegisteredClaimNames.NameId, user.Id),
                     new Claim(JwtRegisteredClaimNames.GivenName, user.UserName),
                     new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                    new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Id),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
                 Expires = DateTime.UtcNow.AddHours(6),

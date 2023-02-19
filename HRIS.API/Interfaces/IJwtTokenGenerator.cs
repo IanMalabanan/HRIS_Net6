@@ -7,9 +7,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace HRIS.Net6_CQRSApproach.Interfaces
+namespace HRIS.API.Interfaces
 {
-    public interface IJwtConfigHelper
+    public interface IJwtTokenGenerator
     {
         string GenerateJwtToken(ApplicationUser user);
         Task<List<Claim>> GetAllValidClaims(ApplicationUser user);

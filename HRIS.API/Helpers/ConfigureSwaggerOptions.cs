@@ -1,4 +1,5 @@
-﻿using HRIS.Application.Common.Interfaces.Application;
+﻿using HRIS.API.Filters;
+using HRIS.Application.Common.Interfaces.Application;
 using HRIS.Infrastructure.Configurations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -31,12 +32,12 @@ namespace HRIS.API
         public void Configure(SwaggerGenOptions options)
         {
             //Add Swagger Document
-            //options.SwaggerDoc("AUTH", new OpenApiInfo
-            //{
-            //    Title = "Identity Server Environment",
-            //    Version = "1",
-            //    Description = "Rest APIs for Identity Server"
-            //});
+            options.SwaggerDoc("AUTH", new OpenApiInfo
+            {
+                Title = "Identity Server Environment",
+                Version = "1",
+                Description = "Rest APIs for Identity Server"
+            });
 
             options.SwaggerDoc("HRIS", new OpenApiInfo
             {
@@ -47,17 +48,17 @@ namespace HRIS.API
 
 
             //Add Swagger Security
-            //options.AddSecurityDefinition("BearerAuth", new OpenApiSecurityScheme
-            //{
-            //    Type = SecuritySchemeType.Http,
-            //    Scheme = JwtBearerDefaults.AuthenticationScheme.ToLowerInvariant(),
-            //    In = ParameterLocation.Header,
-            //    Name = "Authorization",
-            //    BearerFormat = "JWT",
-            //    Description = "JWT Authorization header using the Bearer scheme."
-            //});
+            options.AddSecurityDefinition("BearerAuth", new OpenApiSecurityScheme
+            {
+                Type = SecuritySchemeType.Http,
+                Scheme = JwtBearerDefaults.AuthenticationScheme.ToLowerInvariant(),
+                In = ParameterLocation.Header,
+                Name = "Authorization",
+                BearerFormat = "JWT",
+                Description = "JWT Authorization header using the Bearer scheme."
+            });
 
-            //options.OperationFilter<AuthResponsesOperationFilter>();
+            options.OperationFilter<AuthResponsesOperationFilter>();
 
         }
     }

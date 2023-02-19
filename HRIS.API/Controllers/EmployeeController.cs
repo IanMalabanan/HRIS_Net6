@@ -1,25 +1,21 @@
-﻿using HRIS.API.Controllers;
-using HRIS.Application.Employees.Commands;
+﻿using HRIS.Application.Employees.Commands;
 using HRIS.Application.Employees.Dtos;
 using HRIS.Application.Employees.Queries;
-using HRIS.Domain.Entities;
-using MediatR;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HRIS.Net6_CQRSApproach.Controllers
+namespace HRIS.API.Controllers
 {
     [ApiExplorerSettings(GroupName = "HRIS")]
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    //[Authorize]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class EmployeeController : ApiControllerBase
     {
-        //[AllowAnonymous]
         [HttpGet]
         [Route("getallemployees")]
+        //Run and use Postman to call this request
         public async Task<ActionResult<IEnumerable<GetEmployeesDto>>> GetEmployees()
         {
             try
@@ -36,6 +32,7 @@ namespace HRIS.Net6_CQRSApproach.Controllers
 
 
         [HttpPost("createemployee")]
+        //Run and use Postman to call this request
         public async Task<ActionResult<CreateEmployeeDto>> CreateEmployee(CreateEmployeeCommand request)
         {
             try
