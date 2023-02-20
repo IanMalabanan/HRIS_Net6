@@ -1,6 +1,6 @@
 ﻿using HRIS.Application.Common.Mappings;
 using HRIS.Application.Common.Security;
-using HRIS.Application.Departments.Dtos;
+using HRIS.Application.Departments.Dtos.Queries;
 using MediatR;
 using System;
 using System.Collections.Generic;

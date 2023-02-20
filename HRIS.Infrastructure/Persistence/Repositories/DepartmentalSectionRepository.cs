@@ -14,11 +14,12 @@ namespace HRIS.Infrastructure.Persistence.Repositories
 {
     public class DepartmentalSectionRepository : GenericRepositoryAsync<DepartmentSection>, IDepartmentalSectionRepository
     {
-        public DepartmentalSectionRepository(ApplicationDbContext dbContext, IDateTime dateTimeService
-            , ICurrentUserService currentUserService
-            ) : base(dbContext, dateTimeService
-                , currentUserService
-                )
+        public DepartmentalSectionRepository(ApplicationDbContext dbContext, 
+                                             IDateTime dateTimeService, 
+                                             ICurrentUserService currentUserService) 
+                                            : base(dbContext, 
+                                                  dateTimeService, 
+                                                  currentUserService)
         {
             SetGetQuery(dbContext.Set<DepartmentSection>()
                 .Include(a => a.Department));

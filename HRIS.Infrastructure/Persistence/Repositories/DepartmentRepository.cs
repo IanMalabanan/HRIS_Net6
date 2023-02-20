@@ -15,16 +15,14 @@ namespace HRIS.Infrastructure.Persistence.Repositories
 {
     public class DepartmentRepository : GenericRepositoryAsync<Department>, IDepartmentRepository
     {
-        //private readonly ApplicationDbContext _dbContext;
-
-        public DepartmentRepository(ApplicationDbContext dbContext, IDateTime dateTimeService
-            , ICurrentUserService currentUserService
-            ) : base(dbContext, dateTimeService
-                , currentUserService
-                )
+        public DepartmentRepository(ApplicationDbContext dbContext, 
+                                    IDateTime dateTimeService, 
+                                    ICurrentUserService currentUserService) 
+                                    : base(dbContext, 
+                                          dateTimeService, 
+                                          currentUserService)
         {
-            //_dbContext = dbContext;
-            SetGetQuery(dbContext.Set<Department>());
+            SetGetQuery(dbContext.Set<Department>().Where(x=> x.IsDeleted == false));
         }
 
     }

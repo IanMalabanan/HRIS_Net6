@@ -15,16 +15,18 @@ namespace HRIS.Infrastructure.Persistence.Configurations
         {
             builder.ToTable("Employee");
 
-            builder.HasKey(t => t.EmpID);
+            builder.HasKey(t => t.SerialID);
 
-            builder.Property(t => t.EmpID)
+            builder.Property(t => t.SerialID)
                 .UseIdentityColumn(1, 1)
                 .IsRequired();
 
             builder.Property(t => t.EmpID)
                 .HasMaxLength(15)
-                //.HasComputedColumnSql("'Emp-'" + " + FORMAT([SerialID], '000000000')")
-                //.IsRequired()
+                .HasComputedColumnSql("FORMAT([DateOfBirth],  'ddMMyy') + "
+                            + "'-'" + " + " + "FORMAT([SerialID], '000000000')")
+                //.ValueGeneratedOnAddOrUpdate()
+                .IsRequired()
                 ;
 
             builder.Property(t => t.LastName)
@@ -43,6 +45,10 @@ namespace HRIS.Infrastructure.Persistence.Configurations
                 .IsRequired()
                 .HasMaxLength(2);
 
+            builder.Property(t=> t.DateOfBirth).IsRequired();
+
+            builder.Property(t => t.DateOfBirth).IsRequired();
+
             builder.Property(t => t.DateCreated).IsRequired();
 
             builder.Property(t => t.CreatedBy)
@@ -54,25 +60,25 @@ namespace HRIS.Infrastructure.Persistence.Configurations
 
             builder.Property(t => t.DeletedBy);
 
-
             builder.Property(t => t.DeletedDate);
 
             builder.Property(t => t.ModifiedBy);
 
-
-            builder.Property(t => t.IsDeleted);
-
-
+            builder.Property(t => t.IsDeleted).HasDefaultValue(false);
 
             builder.HasOne(t => t.Department)
                 .WithMany()
                 .HasForeignKey(t => t.DepartmentCode)
                 .OnDelete(DeleteBehavior.NoAction);
 
-
             builder.HasOne(t => t.DepartmentSection)
                 .WithMany()
                 .HasForeignKey(t => new { t.DepartmentCode, t.DepartmentSectionCode })
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne(t => t.CivilStatus)
+                .WithMany()
+                .HasForeignKey(t => t.CivilStatusCode)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

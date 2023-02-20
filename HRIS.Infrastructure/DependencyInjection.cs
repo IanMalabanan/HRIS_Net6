@@ -28,6 +28,8 @@ using Duende.IdentityServer.Models;
 using HRIS.Application.Common.Exceptions;
 using HRIS.Net6_CQRSApproach.Model;
 using HRIS.Application.Common.Interfaces.Services;
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Options;
 
 namespace HRIS.Infrastructure
 {
@@ -47,7 +49,6 @@ namespace HRIS.Infrastructure
             services.Configure<JwtConfig>(configuration.GetSection("JwtConfig"));
 
             var key = Encoding.ASCII.GetBytes(configuration["JwtConfig:Secret"]);
-
 
             var tokenValidationParams = new TokenValidationParameters
             {
@@ -103,17 +104,17 @@ namespace HRIS.Infrastructure
             });
 
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-            options.SignIn.RequireConfirmedAccount = true)
-                        .AddEntityFrameworkStores<ApplicationDbContext>();
+            //services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            //options.SignIn.RequireConfirmedAccount = true)
+            //            .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //services
-            //.AddIdentity<ApplicationUser>()
-            //.AddRoles<IdentityRole>()
-            //.AddEntityFrameworkStores<ApplicationDbContext>();
+            services
+            .AddDefaultIdentity<ApplicationUser>()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            //services.AddIdentityServer()
-             //   .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
+            services.AddIdentityServer()
+                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             //Services
             services.AddScoped<IDateTime, DateTimeService>();

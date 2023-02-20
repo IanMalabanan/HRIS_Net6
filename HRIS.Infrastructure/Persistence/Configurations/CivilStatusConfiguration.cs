@@ -1,6 +1,6 @@
 ﻿using HRIS.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace HRIS.Infrastructure.Persistence.Configurations
 {
-    public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
-    {
-        public void Configure(EntityTypeBuilder<Department> builder)
+    public class CivilStatusConfiguration : IEntityTypeConfiguration<CivilStatus>
+    { 
+        public void Configure(EntityTypeBuilder<CivilStatus> builder)
         {
-            builder.ToTable("Department");
+            builder.ToTable("CivilStatus");
 
             builder.HasKey(t => t.Code);
 
-            builder.Property(t => t.Code).HasMaxLength(1);
+            builder.Property(t => t.Code).HasMaxLength(2);
 
             builder.Property(t => t.Description);
 
@@ -32,11 +32,9 @@ namespace HRIS.Infrastructure.Persistence.Configurations
 
             builder.Property(t => t.DeletedBy);
 
-
             builder.Property(t => t.DeletedDate);
 
             builder.Property(t => t.ModifiedBy);
-
 
             builder.Property(t => t.IsDeleted).HasDefaultValue(false);
 

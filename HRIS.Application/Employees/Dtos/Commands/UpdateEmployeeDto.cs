@@ -6,10 +6,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRIS.Application.Employees.Dtos
+namespace HRIS.Application.Employees.Dtos.Commands
 {
-    public class CreateEmployeeDto : IMapFrom<Employee>
+    public class UpdateEmployeeDto : IMapFrom<Employee>
     {
+        public int SerialID { get; set; }
+
         public string EmpID { get; set; }
 
         public string LastName { get; set; }
@@ -22,16 +24,8 @@ namespace HRIS.Application.Employees.Dtos
 
         public string DepartmentSectionCode { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
 
-        public CreateCustomEmployeeDto CreateCustomEmployeeDto { get; set; }
+        public string CivilStatusCode { get; set; }
     }
-
-    public class CreateCustomEmployeeDto  : IMapTo<CustomEmployee> 
-    {
-        public int EmpID { get; set; }
-
-        public string DefinedEmpID { get; set; }
-
-    }
-
 }

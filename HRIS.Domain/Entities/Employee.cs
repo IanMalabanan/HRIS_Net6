@@ -4,7 +4,9 @@ namespace HRIS.Domain.Entities
 {
     public class Employee : SoftDeletableEntity
     {
-        public int EmpID { get; set; }
+        public string EmpID { get; set; }
+
+        public int SerialID { get; set; }
 
         public string LastName { get; set; }
 
@@ -16,11 +18,17 @@ namespace HRIS.Domain.Entities
 
         public string DepartmentSectionCode { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
+
+        public string CivilStatusCode { get; set; }
+
         public virtual Department Department { get; set; }
 
         public virtual DepartmentSection DepartmentSection { get; set; }
 
- 
+        public virtual CivilStatus CivilStatus { get; set; }
+
+
 
 
     }

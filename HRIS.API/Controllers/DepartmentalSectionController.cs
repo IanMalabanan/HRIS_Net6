@@ -1,11 +1,7 @@
 ﻿using HRIS.Application.DepartmentalSections.Dtos;
 using HRIS.Application.DepartmentalSections.Queries;
-using HRIS.Application.Departments.Dtos;
-using HRIS.Application.Departments.Queries;
-using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HRIS.API.Controllers

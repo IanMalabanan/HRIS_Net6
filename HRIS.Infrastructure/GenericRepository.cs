@@ -67,8 +67,6 @@ namespace HRIS.Infrastructure
             return await GetByRow(predicate);
         }
 
-
-
         public virtual async Task<T> GetByCodeAsync(object code)
         {
             return await _dbContext.Set<T>().FindAsync(code);
@@ -248,7 +246,7 @@ namespace HRIS.Infrastructure
                 else if (entry.State == EntityState.Modified)
                 {
                     entity.DateModified = now;
-                        entity.ModifiedBy = "";// _currentUserService.Username;
+                        entity.ModifiedBy =  _currentUserService.Username;
                 }
             }
         }

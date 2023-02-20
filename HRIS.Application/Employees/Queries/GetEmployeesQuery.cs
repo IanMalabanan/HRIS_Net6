@@ -1,5 +1,5 @@
 ﻿using HRIS.Application.Common.Security;
-using HRIS.Application.Employees.Dtos;
+using HRIS.Application.Employees.Dtos.Queries;
 using MediatR;
 using System;
 using System.Collections.Generic;

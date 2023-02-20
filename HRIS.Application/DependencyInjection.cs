@@ -5,9 +5,9 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using HRIS.Application.Common.Interfaces;
-using HRIS.Application.Common;
 using HRIS.Application.Common.Behaviours;
+using HRIS.Application.Common.Factories;
+using HRIS.Application.Common.Interfaces.Factories;
 
 namespace HRIS.Application
 {

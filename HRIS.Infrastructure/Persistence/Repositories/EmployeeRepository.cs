@@ -8,15 +8,16 @@ namespace HRIS.Infrastructure.Persistence.Repositories
 {
     public class EmployeeRepository : GenericRepositoryAsync<Employee>, IEmployeeRepository
     {
-        public EmployeeRepository(ApplicationDbContext dbContext, IDateTime dateTimeService
-            , ICurrentUserService currentUserService
-            ) : base(dbContext, dateTimeService
-                , currentUserService
-                )
+        public EmployeeRepository(ApplicationDbContext dbContext, 
+                                  IDateTime dateTimeService, 
+                                  ICurrentUserService currentUserService) 
+                                  : base(dbContext, dateTimeService, currentUserService)
         {
             SetGetQuery(dbContext.Set<Employee>()
                 .Include(a=> a.Department)
-                .Include(a=> a.DepartmentSection));
+                .Include(a=> a.DepartmentSection)
+                .Include(a=> a.CivilStatus)
+                .Where(x=> x.IsDeleted == false));
         }
     }
 

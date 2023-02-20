@@ -27,7 +27,7 @@
   <ItemGroup>
     <Folder Include="DepartmentalSections\Commands\" />
     <Folder Include="DepartmentalSections\Handlers\Commands\" />
-    <Folder Include="Departments\Commands\" />
+    <Folder Include="CivilStatuses\" />
   </ItemGroup>
 
 </Project>

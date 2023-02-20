@@ -1,5 +1,6 @@
 ﻿using HRIS.Application.Employees.Commands;
-using HRIS.Application.Employees.Dtos;
+using HRIS.Application.Employees.Dtos.Commands;
+using HRIS.Application.Employees.Dtos.Queries;
 using HRIS.Application.Employees.Queries;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;

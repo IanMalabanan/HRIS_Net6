@@ -1,10 +1,10 @@
-﻿using HRIS.Application.Departments.Dtos;
-using HRIS.Application.Departments.Queries;
+﻿using HRIS.Application.Departments.Queries;
 using HRIS.Application.Employees.Dtos;
 using HRIS.Application.Employees.Queries;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using HRIS.Application.Departments.Dtos.Queries;
 
 namespace HRIS.API.Controllers
 {

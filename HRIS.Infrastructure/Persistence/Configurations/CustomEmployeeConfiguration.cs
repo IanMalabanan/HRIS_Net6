@@ -47,12 +47,12 @@ namespace HRIS.Infrastructure.Persistence.Configurations
             builder.Property(t => t.ModifiedBy);
 
 
-            builder.Property(t => t.IsDeleted);
+            builder.Property(t => t.IsDeleted).HasDefaultValue(false);
 
-            builder.HasOne(t => t.Employee)
-                .WithMany()
-                .HasForeignKey(t => t.EmpID)
-                .OnDelete(DeleteBehavior.NoAction);
+            //builder.HasOne(t => t.Employee)
+            //    .WithMany()
+            //    .HasForeignKey(t => t.EmpID)
+            //    .OnDelete(DeleteBehavior.NoAction);
 
         }
     }

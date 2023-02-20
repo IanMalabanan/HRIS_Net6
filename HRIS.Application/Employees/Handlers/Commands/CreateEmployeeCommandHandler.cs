@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
-using HRIS.Application.Common.Interfaces;
+using HRIS.Application.Common.Exceptions;
+using HRIS.Application.Common.Interfaces.Factories;
 using HRIS.Application.Common.Interfaces.Repositories;
 using HRIS.Application.Employees.Commands;
-using HRIS.Application.Employees.Dtos;
+using HRIS.Application.Employees.Dtos.Commands;
 using HRIS.Application.Utils;
 using HRIS.Domain.Entities;
 using MediatR;
@@ -55,7 +56,7 @@ namespace HRIS.Application.Employees.Handlers.Commands
                 }
 
                 if (getemployees.Any())
-                    throw new Exception("Employee already registered.");
+                    throw new ValidationException("Employee already registered.");
 
                 var counter = await _employeeRepository.GetAllAsync();
 
@@ -65,8 +66,8 @@ namespace HRIS.Application.Employees.Handlers.Commands
 
                 var cusEmpDto = new CreateCustomEmployeeDto
                 {
-                    EmpID = res.EmpID,
-                    DefinedEmpID = $"Emp-{NumberFormatUtil.AddZeroPrefix(9, res.EmpID)}"
+                    SerialID = res.SerialID,
+                    DefinedEmpID = $"Emp-{NumberFormatUtil.AddZeroPrefix(9, res.SerialID)}"
                 };
 
                 var _employeess = _mapper.Map<CustomEmployee>(cusEmpDto);

@@ -1,4 +1,5 @@
-﻿using HRIS.Application.Common.Interfaces.Services;
+﻿using HRIS.Application.Common.Attributes;
+using HRIS.Application.Common.Interfaces.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using System;

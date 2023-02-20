@@ -1,10 +1,10 @@
-﻿using HRIS.Application.Common.Interfaces;
+﻿using HRIS.Application.Common.Interfaces.Factories;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Transactions;
 
-namespace HRIS.Application.Common
+namespace HRIS.Application.Common.Factories
 {
     public class TransactionScopeFactory : ITransactionScopeFactory
     {

@@ -33,6 +33,8 @@ namespace HRIS.Infrastructure
 
         public DbSet<CustomEmployee> CustomEmployees { get; set; }
 
+        public DbSet<CivilStatus> CivilStatuses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

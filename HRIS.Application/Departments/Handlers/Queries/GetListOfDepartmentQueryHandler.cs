@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using HRIS.Application.Common.Interfaces.Application;
 using HRIS.Application.Common.Interfaces.Repositories;
-using HRIS.Application.Departments.Dtos;
+using HRIS.Application.Departments.Dtos.Queries;
 using HRIS.Application.Departments.Queries;
 using MediatR;
 using System;
