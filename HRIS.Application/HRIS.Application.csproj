@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CivilStatuses\" />
+    <Folder Include="CivilStatuses\Queries\" />
   </ItemGroup>
 
 </Project>

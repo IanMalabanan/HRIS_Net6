@@ -127,6 +127,8 @@ namespace HRIS.Infrastructure
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IDepartmentalSectionRepository,DepartmentalSectionRepository>();
 
+            services.AddScoped<ICivilStatusRepository, CivilStatusRepository>();
+
 
             return services;
         }

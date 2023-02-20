@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HRIS.Application.Employees.Dtos.Queries
 {
-    public class GetEmployeeByName : IMapFrom<Employee>
+    public class GetEmployeeConsistingNameDto : IMapFrom<Employee>
     {
         public string Name { get; set; }
     }

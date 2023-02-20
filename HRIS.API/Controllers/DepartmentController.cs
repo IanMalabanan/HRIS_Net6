@@ -14,7 +14,6 @@ namespace HRIS.API.Controllers
     [ApiExplorerSettings(GroupName = "HRIS")]
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [Authorize]
     public class DepartmentController : ApiControllerBase
     {
         [HttpGet]
