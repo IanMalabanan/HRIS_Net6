@@ -26,18 +26,12 @@ namespace HRIS.Application.Departments.Handlers.Queries
 
         public async Task<IEnumerable<GetDepartmentDto>> Handle(GetListofDepartmentQuery request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var _result = await _departmentRepository.GetAllAsync();
+            var _result = await _departmentRepository.GetAllAsync();
 
-                var _output = _Mapper.Map<IEnumerable<GetDepartmentDto>>(_result);
+            var _output = _Mapper.Map<IEnumerable<GetDepartmentDto>>(_result);
 
-                return _output;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return _output;
+
         }
     }
 }

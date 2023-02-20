@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HRIS.Infrastructure.Persistence.Repositories
 {
-    public class DepartmentalSectionRepository : GenericRepositoryAsync<DepartmentSection>, IDepartmentalSectionRepository
+    public class DepartmentalSectionRepository : GenericRepositoryAsync<DepartmentalSection>, IDepartmentalSectionRepository
     {
         public DepartmentalSectionRepository(ApplicationDbContext dbContext, 
                                              IDateTime dateTimeService, 
@@ -21,7 +21,7 @@ namespace HRIS.Infrastructure.Persistence.Repositories
                                                   dateTimeService, 
                                                   currentUserService)
         {
-            SetGetQuery(dbContext.Set<DepartmentSection>()
+            SetGetQuery(dbContext.Set<DepartmentalSection>()
                 .Include(a => a.Department));
         }
     }

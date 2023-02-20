@@ -24,7 +24,7 @@ namespace HRIS.Domain.Entities
 
         public virtual Department Department { get; set; }
 
-        public virtual DepartmentSection DepartmentSection { get; set; }
+        public virtual DepartmentalSection DepartmentSection { get; set; }
 
         public virtual CivilStatus CivilStatus { get; set; }
 

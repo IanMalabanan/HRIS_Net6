@@ -1,4 +1,4 @@
-﻿using HRIS.Application.DepartmentalSections.Dtos;
+﻿using HRIS.Application.DepartmentalSections.Dtos.Queries;
 using MediatR;
 using System;
 using System.Collections.Generic;

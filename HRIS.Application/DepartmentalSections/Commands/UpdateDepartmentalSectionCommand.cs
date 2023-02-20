@@ -1,5 +1,4 @@
 ﻿using HRIS.Application.Common.Mappings;
-using HRIS.Application.Departments.Dtos.Commands;
 using HRIS.Domain.Entities;
 using MediatR;
 using System;
@@ -8,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRIS.Application.Departments.Commands
+namespace HRIS.Application.DepartmentalSections.Commands
 {
-    public class UpdateDepartmentCommand : IRequest<Tuple<bool,string>>, IMapTo<Department>
+    public class UpdateDepartmentalSectionCommand : IRequest<Tuple<bool, string>>, IMapTo<DepartmentalSection>
     {
+        public string DepartmentCode { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
     }

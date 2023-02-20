@@ -244,7 +244,7 @@ namespace HRIS.Infrastructure.Migrations
 
                     b.HasKey("ID", "DefinedEmpID");
 
-                    b.ToTable("CustomEmployee", (string)null);
+                    b.ToTable("CustomEmployees", (string)null);
                 });
 
             modelBuilder.Entity("HRIS.Domain.Entities.Department", b =>
@@ -283,10 +283,10 @@ namespace HRIS.Infrastructure.Migrations
 
                     b.HasKey("Code");
 
-                    b.ToTable("Department", (string)null);
+                    b.ToTable("Departments", (string)null);
                 });
 
-            modelBuilder.Entity("HRIS.Domain.Entities.DepartmentSection", b =>
+            modelBuilder.Entity("HRIS.Domain.Entities.DepartmentalSection", b =>
                 {
                     b.Property<string>("DepartmentCode")
                         .HasMaxLength(1)
@@ -326,7 +326,7 @@ namespace HRIS.Infrastructure.Migrations
 
                     b.HasKey("DepartmentCode", "Code");
 
-                    b.ToTable("DepartmentSection", (string)null);
+                    b.ToTable("DepartmentalSections", (string)null);
                 });
 
             modelBuilder.Entity("HRIS.Domain.Entities.Employee", b =>
@@ -403,7 +403,7 @@ namespace HRIS.Infrastructure.Migrations
 
                     b.HasIndex("DepartmentCode", "DepartmentSectionCode");
 
-                    b.ToTable("Employee", (string)null);
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("HRIS.Infrastructure.Identity.ApplicationUser", b =>
@@ -608,7 +608,7 @@ namespace HRIS.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("HRIS.Domain.Entities.DepartmentSection", b =>
+            modelBuilder.Entity("HRIS.Domain.Entities.DepartmentalSection", b =>
                 {
                     b.HasOne("HRIS.Domain.Entities.Department", "Department")
                         .WithMany()
@@ -633,7 +633,7 @@ namespace HRIS.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("HRIS.Domain.Entities.DepartmentSection", "DepartmentSection")
+                    b.HasOne("HRIS.Domain.Entities.DepartmentalSection", "DepartmentSection")
                         .WithMany()
                         .HasForeignKey("DepartmentCode", "DepartmentSectionCode")
                         .OnDelete(DeleteBehavior.NoAction)

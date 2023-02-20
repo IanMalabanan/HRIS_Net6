@@ -29,7 +29,7 @@ namespace HRIS.Infrastructure
 
         public DbSet<Department> Departments { get; set; }
 
-        public DbSet<DepartmentSection> DepartmentSections { get; set; }
+        public DbSet<DepartmentalSection> DepartmentSections { get; set; }
 
         public DbSet<CustomEmployee> CustomEmployees { get; set; }
 

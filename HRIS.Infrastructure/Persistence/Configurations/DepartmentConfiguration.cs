@@ -13,7 +13,7 @@ namespace HRIS.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
-            builder.ToTable("Department");
+            builder.ToTable("Departments");
 
             builder.HasKey(t => t.Code);
 

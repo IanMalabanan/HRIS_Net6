@@ -112,7 +112,6 @@ namespace HRIS.Infrastructure
         public virtual async Task<T> AddAsync(T entity, CancellationToken cancellationToken)
         {
             await _dbContext.Set<T>().AddAsync(entity);
-
             UpdateAuditEntities();  
             await _dbContext.SaveChangesAsync(cancellationToken);
             return entity;
@@ -122,12 +121,14 @@ namespace HRIS.Infrastructure
         public virtual async Task UpdateAsync(T entity, CancellationToken cancellationToken)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
+            UpdateAuditEntities();
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
         public virtual async Task DeleteAsync(T entity, CancellationToken cancellationToken)
         {
             _dbContext.Set<T>().Remove(entity);
+            UpdateAuditEntities();
             await _dbContext.SaveChangesAsync(cancellationToken);
         }
 

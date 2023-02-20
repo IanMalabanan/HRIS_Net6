@@ -1,4 +1,5 @@
-﻿using HRIS.Application.DepartmentalSections.Dtos;
+﻿using HRIS.Application.DepartmentalSections.Commands;
+using HRIS.Application.DepartmentalSections.Dtos.Queries;
 using HRIS.Application.DepartmentalSections.Queries;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -28,5 +29,43 @@ namespace HRIS.API.Controllers
                 return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
+
+
+        [HttpPost]
+        [Route("createdepartmentalsection")]
+        //Run and use Postman to call this request
+        public async Task<ActionResult<Tuple<bool, string>>> CreateDepartmentalSection([FromBody] CreateDepartmentalSectionCommand request)
+        {
+            try
+            {
+                var _result = await Mediator.Send(request);
+
+                return Ok(_result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+        [HttpPut]
+        [Route("updatedepartmentalsection")]
+        //Run and use Postman to call this request
+        public async Task<ActionResult<Tuple<bool, string>>> UpdateDepartmentalSection([FromBody] UpdateDepartmentalSectionCommand request)
+        {
+            try
+            {
+                var _result = await Mediator.Send(request);
+
+                return Ok(_result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+
+        
     }
 }

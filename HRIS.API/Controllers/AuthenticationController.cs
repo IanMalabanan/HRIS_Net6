@@ -17,7 +17,7 @@ namespace HRIS.API.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly TokenValidationParameters _tokenValidationParams;
+        //private readonly TokenValidationParameters _tokenValidationParams;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<AuthenticationController> _logger;
         private readonly ApplicationDbContext _apiDbContext;
@@ -26,8 +26,8 @@ namespace HRIS.API.Controllers
         public AuthenticationController(
                 UserManager<ApplicationUser> userManager,
                 RoleManager<IdentityRole> roleManager,
-                IOptionsMonitor<JwtConfig> optionsMonitor,
-                TokenValidationParameters tokenValidationParams,
+                //IOptionsMonitor<JwtConfig> optionsMonitor,
+                //TokenValidationParameters tokenValidationParams,
                 ILogger<AuthenticationController> logger,
                 ApplicationDbContext apiDbContext
                 , IJwtTokenGenerator jWTConfiguration
@@ -37,7 +37,7 @@ namespace HRIS.API.Controllers
             _logger = logger;
             _roleManager = roleManager;
             _userManager = userManager;
-            _tokenValidationParams = tokenValidationParams;
+            //_tokenValidationParams = tokenValidationParams;
             _apiDbContext = apiDbContext;
             _jWTConfiguration = jWTConfiguration;
         }

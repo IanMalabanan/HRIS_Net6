@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HRIS.Application.Common.Interfaces.Repositories
 {
-    public interface IDepartmentalSectionRepository : IGenericRepositoryAsync<DepartmentSection>
+    public interface IDepartmentalSectionRepository : IGenericRepositoryAsync<DepartmentalSection>
     {
     }
 }

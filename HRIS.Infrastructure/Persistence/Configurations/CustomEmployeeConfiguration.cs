@@ -13,7 +13,7 @@ namespace HRIS.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<CustomEmployee> builder)
         {
-            builder.ToTable("CustomEmployee");
+            builder.ToTable("CustomEmployees");
 
             builder.HasKey(t => new { t.ID, t.DefinedEmpID });
 

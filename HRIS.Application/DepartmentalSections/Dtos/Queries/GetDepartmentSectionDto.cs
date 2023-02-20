@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HRIS.Application.DepartmentalSections.Dtos
+namespace HRIS.Application.DepartmentalSections.Dtos.Queries
 {
-    public class GetDepartmentSectionDto : IMapFrom<DepartmentSection>
+    public class GetDepartmentSectionDto : IMapFrom<DepartmentalSection>
     {
         public string DepartmentCode { get; set; }
         public string Code { get; set; }

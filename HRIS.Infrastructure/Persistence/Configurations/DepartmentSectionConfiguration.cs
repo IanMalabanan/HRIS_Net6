@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace HRIS.Infrastructure.Persistence.Configurations
 {
-    public class DepartmentSectionConfiguration : IEntityTypeConfiguration<DepartmentSection>
+    public class DepartmentSectionConfiguration : IEntityTypeConfiguration<DepartmentalSection>
     {
-        public void Configure(EntityTypeBuilder<DepartmentSection> builder)
+        public void Configure(EntityTypeBuilder<DepartmentalSection> builder)
         {
-            builder.ToTable("DepartmentSection");
+            builder.ToTable("DepartmentalSections");
 
             builder.HasKey(t => new { t.DepartmentCode, t.Code });
 

@@ -10,6 +10,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,25 +31,37 @@ namespace HRIS.Application.Departments.Handlers.Commands
             _departmentRepository = departmentRepository;
         }
 
+        private async Task<bool> ValidateFields(CreateDepartmentCommand request)
+        {
+            if (string.IsNullOrEmpty(request.Code))
+                throw new ValidationException("Code is required");
+
+            if (string.IsNullOrEmpty(request.Code))
+                throw new ValidationException("Description is required");
+
+            return await Task.FromResult(true);
+        }
+
         public async Task<CreateDepartmentDto> Handle(CreateDepartmentCommand request, CancellationToken cancellationToken)
         {
             using (var scope = _transactionScopeFactory.Create())
             {
+                await ValidateFields(request);
+
                 var isExists = await _departmentRepository.GetAllAsync(x=> x.Code == request.Code && x.IsDeleted == false);
 
                 if (isExists.Any())
                     throw new ValidationException("Department already registered.");
 
-
                 var _department = _mapper.Map<Department>(request);
 
-                var res = await _departmentRepository.AddAsync(_department);
+                var result = await _departmentRepository.AddAsync(_department);
 
-                var _return = _mapper.Map<CreateDepartmentDto>(_department);
+                var _data = _mapper.Map<CreateDepartmentDto>(result);
 
                 scope.Complete();
 
-                return _return;
+                return _data;
             }
         }
     }

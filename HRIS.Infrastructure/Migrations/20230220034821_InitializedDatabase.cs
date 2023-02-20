@@ -68,7 +68,7 @@ namespace HRIS.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CustomEmployee",
+                name: "CustomEmployees",
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
@@ -85,11 +85,11 @@ namespace HRIS.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CustomEmployee", x => new { x.ID, x.DefinedEmpID });
+                    table.PrimaryKey("PK_CustomEmployees", x => new { x.ID, x.DefinedEmpID });
                 });
 
             migrationBuilder.CreateTable(
-                name: "Department",
+                name: "Departments",
                 columns: table => new
                 {
                     Code = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
@@ -104,7 +104,7 @@ namespace HRIS.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Department", x => x.Code);
+                    table.PrimaryKey("PK_Departments", x => x.Code);
                 });
 
             migrationBuilder.CreateTable(
@@ -271,7 +271,7 @@ namespace HRIS.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "DepartmentSection",
+                name: "DepartmentalSections",
                 columns: table => new
                 {
                     DepartmentCode = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
@@ -287,16 +287,16 @@ namespace HRIS.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DepartmentSection", x => new { x.DepartmentCode, x.Code });
+                    table.PrimaryKey("PK_DepartmentalSections", x => new { x.DepartmentCode, x.Code });
                     table.ForeignKey(
-                        name: "FK_DepartmentSection_Department_DepartmentCode",
+                        name: "FK_DepartmentalSections_Departments_DepartmentCode",
                         column: x => x.DepartmentCode,
-                        principalTable: "Department",
+                        principalTable: "Departments",
                         principalColumn: "Code");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employee",
+                name: "Employees",
                 columns: table => new
                 {
                     SerialID = table.Column<int>(type: "int", nullable: false)
@@ -319,22 +319,22 @@ namespace HRIS.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employee", x => x.SerialID);
+                    table.PrimaryKey("PK_Employees", x => x.SerialID);
                     table.ForeignKey(
-                        name: "FK_Employee_CivilStatus_CivilStatusCode",
+                        name: "FK_Employees_CivilStatus_CivilStatusCode",
                         column: x => x.CivilStatusCode,
                         principalTable: "CivilStatus",
                         principalColumn: "Code");
                     table.ForeignKey(
-                        name: "FK_Employee_Department_DepartmentCode",
-                        column: x => x.DepartmentCode,
-                        principalTable: "Department",
-                        principalColumn: "Code");
-                    table.ForeignKey(
-                        name: "FK_Employee_DepartmentSection_DepartmentCode_DepartmentSectionCode",
+                        name: "FK_Employees_DepartmentalSections_DepartmentCode_DepartmentSectionCode",
                         columns: x => new { x.DepartmentCode, x.DepartmentSectionCode },
-                        principalTable: "DepartmentSection",
+                        principalTable: "DepartmentalSections",
                         principalColumns: new[] { "DepartmentCode", "Code" });
+                    table.ForeignKey(
+                        name: "FK_Employees_Departments_DepartmentCode",
+                        column: x => x.DepartmentCode,
+                        principalTable: "Departments",
+                        principalColumn: "Code");
                 });
 
             migrationBuilder.CreateIndex(
@@ -388,13 +388,13 @@ namespace HRIS.Infrastructure.Migrations
                 column: "Expiration");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_CivilStatusCode",
-                table: "Employee",
+                name: "IX_Employees_CivilStatusCode",
+                table: "Employees",
                 column: "CivilStatusCode");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employee_DepartmentCode_DepartmentSectionCode",
-                table: "Employee",
+                name: "IX_Employees_DepartmentCode_DepartmentSectionCode",
+                table: "Employees",
                 columns: new[] { "DepartmentCode", "DepartmentSectionCode" });
 
             migrationBuilder.CreateIndex(
@@ -441,13 +441,13 @@ namespace HRIS.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CustomEmployee");
+                name: "CustomEmployees");
 
             migrationBuilder.DropTable(
                 name: "DeviceCodes");
 
             migrationBuilder.DropTable(
-                name: "Employee");
+                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Keys");
@@ -465,10 +465,10 @@ namespace HRIS.Infrastructure.Migrations
                 name: "CivilStatus");
 
             migrationBuilder.DropTable(
-                name: "DepartmentSection");
+                name: "DepartmentalSections");
 
             migrationBuilder.DropTable(
-                name: "Department");
+                name: "Departments");
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using HRIS.Application.Common.Interfaces.Repositories;
-using HRIS.Application.DepartmentalSections.Dtos;
+using HRIS.Application.DepartmentalSections.Dtos.Queries;
 using HRIS.Application.DepartmentalSections.Queries;
 using HRIS.Application.Departments.Dtos;
 using HRIS.Application.Departments.Queries;
