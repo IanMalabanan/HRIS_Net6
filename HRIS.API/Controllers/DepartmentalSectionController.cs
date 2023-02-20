@@ -14,7 +14,6 @@ namespace HRIS.API.Controllers
     public class DepartmentalSectionController : ApiControllerBase
     {
         [HttpGet]
-        [Route("getalldepartmentalsection")]
         //Run and use Postman to call this request
         public async Task<ActionResult<IEnumerable<GetDepartmentSectionDto>>> GetDepartmentalSection()
         {
@@ -32,7 +31,7 @@ namespace HRIS.API.Controllers
 
 
         [HttpPost]
-        [Route("createdepartmentalsection")]
+        [Route("create")]
         //Run and use Postman to call this request
         public async Task<ActionResult<Tuple<bool, string>>> CreateDepartmentalSection([FromBody] CreateDepartmentalSectionCommand request)
         {
@@ -49,7 +48,7 @@ namespace HRIS.API.Controllers
         }
 
         [HttpPut]
-        [Route("updatedepartmentalsection")]
+        [Route("update")]
         //Run and use Postman to call this request
         public async Task<ActionResult<Tuple<bool, string>>> UpdateDepartmentalSection([FromBody] UpdateDepartmentalSectionCommand request)
         {

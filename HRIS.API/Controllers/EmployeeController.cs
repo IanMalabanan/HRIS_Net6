@@ -15,13 +15,44 @@ namespace HRIS.API.Controllers
     public class EmployeeController : ApiControllerBase
     {
         [HttpGet]
-        [Route("getallemployees")]
         //Run and use Postman to call this request
         public async Task<ActionResult<IEnumerable<GetEmployeesDto>>> GetEmployees()
         {
             try
             {
-                var _result = await Mediator.Send(new GetEmployeesQuery() { });
+                var _result = await Mediator.Send(new GetEmployeeByEmpIDQuery() { });
+
+                return Ok(_result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+        [HttpGet("{empid}")]
+        //Run and use Postman to call this request
+        public async Task<ActionResult<IEnumerable<GetEmployeesDto>>> GetEmployeeByEmpID(string empid)
+        {
+            try
+            {
+                var _result = await Mediator.Send(new GetEmployeeByEmpIDQuery() { EmpID = empid});
+
+                return Ok(_result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+        [HttpGet("{name}")]
+        //Run and use Postman to call this request
+        public async Task<ActionResult<IEnumerable<GetEmployeesDto>>> GetEmployeeByName(string name)
+        {
+            try
+            {
+                var _result = await Mediator.Send(new GetEmployeeConsistingNameQuery() { Name = name });
 
                 return Ok(_result);
             }
@@ -32,9 +63,43 @@ namespace HRIS.API.Controllers
         }
 
 
-        [HttpPost("createemployee")]
+
+
+
+        [HttpPost("create")]
         //Run and use Postman to call this request
         public async Task<ActionResult<CreateEmployeeDto>> CreateEmployee(CreateEmployeeCommand request)
+        {
+            try
+            {
+                var _results = await Mediator.Send(request);
+                return Ok(_results);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+        [HttpPost("update")]
+        //Run and use Postman to call this request
+        public async Task<ActionResult<CreateEmployeeDto>> UpdateEmployee(UpdateEmployeeCommand request)
+        {
+            try
+            {
+                var _results = await Mediator.Send(request);
+                return Ok(_results);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+            }
+        }
+
+
+        [HttpDelete("archive")]
+        //Run and use Postman to call this request
+        public async Task<ActionResult<CreateEmployeeDto>> ArchiveEmployee(DeleteEmployeeCommand request)
         {
             try
             {

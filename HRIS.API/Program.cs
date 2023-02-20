@@ -40,13 +40,13 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    //app.UseSwagger();
-    //app.UseSwaggerUI(c =>
-    //{
-    //    c.DocumentTitle = "HRIS - Rest API Services";
-    //    c.SwaggerEndpoint("/swagger/AUTH/swagger.json", "AUTH");
-    //    c.SwaggerEndpoint("/swagger/HRIS/swagger.json", "HRIS");
-    //});
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.DocumentTitle = "HRIS - Rest API Services";
+        c.SwaggerEndpoint("/swagger/AUTH/swagger.json", "AUTH");
+        c.SwaggerEndpoint("/swagger/HRIS/swagger.json", "HRIS");
+    });
 }
 
 app.UseRouting();

@@ -126,7 +126,6 @@ namespace HRIS.Infrastructure
             services.AddScoped<ICustomEmployeeRepository, CustomEmployeeRepository>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IDepartmentalSectionRepository,DepartmentalSectionRepository>();
-
             services.AddScoped<ICivilStatusRepository, CivilStatusRepository>();
 
 

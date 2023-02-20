@@ -2,6 +2,7 @@
 using HRIS.Application.Common.Exceptions;
 using HRIS.Application.Common.Interfaces.Factories;
 using HRIS.Application.Common.Interfaces.Repositories;
+using HRIS.Application.Departments.Commands;
 using HRIS.Application.Employees.Commands;
 using HRIS.Application.Employees.Dtos.Commands;
 using HRIS.Application.Utils;
@@ -33,57 +34,45 @@ namespace HRIS.Application.Employees.Handlers.Commands
             _customEmployeeRepository = customEmployeeRepository;
         }
 
+        private async Task<bool> ValidateFields(CreateEmployeeCommand request)
+        {
+            if (string.IsNullOrEmpty(request.LastName))
+                throw new ValidationException("LastName is required");
+
+            if (string.IsNullOrEmpty(request.LastName))
+                throw new ValidationException("FirstName is required");
+
+            if (string.IsNullOrEmpty(request.DepartmentCode))
+                throw new ValidationException("Department Code is required");
+
+            if (string.IsNullOrEmpty(request.DepartmentSectionCode))
+                throw new ValidationException("Department Section Code is required");
+
+            if (string.IsNullOrEmpty(request.CivilStatusCode))
+                throw new ValidationException("Civil Status Code is required");
+            
+            if(!request.DateOfBirth.HasValue)
+                throw new ValidationException("Date Of Birth is required");
+            
+            return await Task.FromResult(true);
+        }
+
+
         public async Task<CreateEmployeeDto> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
         {
             using (var scope = _transactionScopeFactory.Create())
             {
-                IEnumerable<Employee> getemployees;
-
-                if (string.IsNullOrEmpty(request.MiddleName))
-                {
-                    getemployees = await _employeeRepository.GetAllAsync
-                     (x => (x.FirstName + " " + x.LastName)
-                         .Contains(request.FirstName + " " + request.LastName)
-                     );
-                }
-                else
-                {
-                    getemployees = await _employeeRepository.GetAllAsync
-                    (x =>
-                        (x.FirstName + " " + x.MiddleName + " " + x.LastName)
-                        .Contains(request.FirstName + " " + request.MiddleName + " " + request.LastName)
-                    );
-                }
-
-                if (getemployees.Any())
-                    throw new ValidationException("Employee already registered.");
-
-                var counter = await _employeeRepository.GetAllAsync();
+                await ValidateFields(request);
 
                 var _employee = _mapper.Map<Employee>(request);
 
-                var res = await _employeeRepository.AddAsync(_employee);
+                var result = await _employeeRepository.AddAsync(_employee);
 
-                var cusEmpDto = new CreateCustomEmployeeDto
-                {
-                    SerialID = res.SerialID,
-                    DefinedEmpID = $"Emp-{NumberFormatUtil.AddZeroPrefix(9, res.SerialID)}"
-                };
-
-                var _employeess = _mapper.Map<CustomEmployee>(cusEmpDto);
-
-                await _customEmployeeRepository.AddAsync(_employeess);
-
-                var _return = _mapper.Map<CreateEmployeeDto>(_employee);
-
-                if(_return.CreateCustomEmployeeDto == null)
-                {
-                    _return.CreateCustomEmployeeDto = cusEmpDto;
-                }
+                var data = _mapper.Map<CreateEmployeeDto>(result);
 
                 scope.Complete();
 
-                return _return;
+                return data;
             }
         }
 

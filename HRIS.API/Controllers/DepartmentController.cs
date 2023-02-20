@@ -51,7 +51,7 @@ namespace HRIS.API.Controllers
 
 
         [HttpPost]
-        [Route("createdepartment")]
+        [Route("create")]
         public async Task<ActionResult<CreateDepartmentDto>> CreateDepartment([FromBody] CreateDepartmentCommand request)
         {
             try
@@ -67,7 +67,7 @@ namespace HRIS.API.Controllers
         }
 
         [HttpPut]
-        [Route("updatedepartment")]
+        [Route("update")]
         public async Task<ActionResult<CreateDepartmentDto>> UpdateDepartment([FromBody] UpdateDepartmentCommand request)
         {
             try

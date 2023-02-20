@@ -1,4 +1,5 @@
-﻿using HRIS.Domain.Entities;
+﻿using HRIS.Application.Common.Mappings;
+using HRIS.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HRIS.Application.Employees.Commands
 {
-    public class DeleteEmployeeCommand : IRequest<Employee>
+    public class DeleteEmployeeCommand : IRequest<Tuple<bool,string>>, IMapTo<Employee>
     {
         public string EmpID { get; set; }
     }

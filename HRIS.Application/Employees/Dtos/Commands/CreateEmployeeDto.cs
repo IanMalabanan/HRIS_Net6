@@ -24,8 +24,10 @@ namespace HRIS.Application.Employees.Dtos.Commands
 
         public string CivilStatusCode { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
 
-        public CreateCustomEmployeeDto CreateCustomEmployeeDto { get; set; }
+
+        //public CreateCustomEmployeeDto CreateCustomEmployeeDto { get; set; }
     }
 
     public class CreateCustomEmployeeDto : IMapTo<CustomEmployee>

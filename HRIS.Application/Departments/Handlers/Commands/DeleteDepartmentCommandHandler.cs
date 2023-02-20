@@ -29,7 +29,7 @@ namespace HRIS.Application.Departments.Handlers.Commands
             if (!isExist.Any()) 
                 return Tuple.Create(false,"Department does not exist");
   
-            var entity = new Department { Code = request.Code };
+            var entity = isExist.FirstOrDefault();
 
             await _departmentRepository.SoftDeleteAsync(entity);
 

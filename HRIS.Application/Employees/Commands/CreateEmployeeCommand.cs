@@ -24,7 +24,7 @@ namespace HRIS.Application.Employees.Commands
 
         public string DepartmentSectionCode { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         public string CivilStatusCode { get; set; }
 
