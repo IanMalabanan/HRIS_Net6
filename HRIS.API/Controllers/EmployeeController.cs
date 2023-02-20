@@ -97,13 +97,13 @@ namespace HRIS.API.Controllers
         }
 
 
-        [HttpDelete("archive")]
+        [HttpDelete("archive/{empid}")]
         //Run and use Postman to call this request
-        public async Task<ActionResult<CreateEmployeeDto>> ArchiveEmployee(DeleteEmployeeCommand request)
+        public async Task<ActionResult<CreateEmployeeDto>> ArchiveEmployee( string empid)
         {
             try
             {
-                var _results = await Mediator.Send(request);
+                var _results = await Mediator.Send(new DeleteEmployeeCommand { EmpID = empid});
                 return Ok(_results);
             }
             catch (Exception ex)
