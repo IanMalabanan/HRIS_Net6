@@ -32,7 +32,6 @@ namespace HRIS.API.Controllers
             }
         }
 
-
         [HttpGet("{name}")]
         //Run and use Postman to call this request
         public async Task<ActionResult<IEnumerable<GetDepartmentDto>>> GetDepartmentsConsistingName(string name)
@@ -48,7 +47,6 @@ namespace HRIS.API.Controllers
                 return BadRequest(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
-
 
         [HttpPost]
         [Route("create")]
