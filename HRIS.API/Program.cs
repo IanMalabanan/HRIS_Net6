@@ -7,8 +7,6 @@ using HRIS.API.Services;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using HRIS.API;
-using HRIS.API.Helpers;
-using HRIS.API.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,8 +30,6 @@ builder.Services.AddMediatR(Assembly.Load("HRIS.Infrastructure"));
 
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
-builder.Services.AddScoped<IJwtTokenGenerator, JWTTokenGenerator>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,7 +40,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.DocumentTitle = "HRIS - Rest API Services";
-        c.SwaggerEndpoint("/swagger/AUTH/swagger.json", "AUTH");
         c.SwaggerEndpoint("/swagger/HRIS/swagger.json", "HRIS");
     });
 }
@@ -52,10 +47,6 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
-
-app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {

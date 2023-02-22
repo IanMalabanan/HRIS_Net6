@@ -10,10 +10,9 @@ namespace HRIS.Application.Employees.Dtos.Queries
 {
     public class GetEmployeesDto : IMapFrom<Employee>
     {
-        private string _fullName;
+        public string EmpID { get; set; }
 
         public int SerialID { get; set; }
-        public string EmpID { get; set; }
 
         public string LastName { get; set; }
 
@@ -21,17 +20,13 @@ namespace HRIS.Application.Employees.Dtos.Queries
 
         public string MiddleName { get; set; }
 
-        public string FullName
-        {
-            get => _fullName;
-            set
-            {
-                string name = string.IsNullOrEmpty(MiddleName) ? (FirstName + " " + LastName) : (FirstName + " " + MiddleName + " " + LastName);
-                value = name;
-            }
-        }
+        public string DepartmentCode { get; set; }
+
+        public string DepartmentSectionCode { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        public string CivilStatusCode { get; set; }
 
         public GetEmployeeDepartmentDto Department { get; set; }
 

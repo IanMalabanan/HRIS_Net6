@@ -9,6 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+
+
 
 namespace HRIS.Application.Employees.Handlers.Queries
 {
@@ -16,28 +19,36 @@ namespace HRIS.Application.Employees.Handlers.Queries
     {
         private readonly IMapper _Mapper;
         private readonly IEmployeeRepository _employeeRepository;
-        
-        public GetEmployeesQueryHandler(IMapper Mapper,IEmployeeRepository employeeRepository)
+
+        public GetEmployeesQueryHandler(IMapper Mapper, IEmployeeRepository employeeRepository)
         {
             _Mapper = Mapper;
             _employeeRepository = employeeRepository;
         }
 
-
         public async Task<IEnumerable<GetEmployeesDto>> Handle(GetEmployeesQuery request, CancellationToken cancellationToken)
         {
-            try
-            {
-                var _result = await _employeeRepository.GetAllAsync();
+            var _result = await _employeeRepository.GetAllAsync();
+            
+            var _output = _Mapper.Map<IEnumerable<GetEmployeesDto>>(_result);
 
-                var _output = _Mapper.Map<IEnumerable<GetEmployeesDto>>(_result);
+            //_output.ToList().ForEach(x => 
+            //x.FullName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(
+            //                string.IsNullOrEmpty(x.MiddleName) ? (x.LastName + ", " + x.FirstName)
+            //                        : (x.LastName + ", " + x.FirstName + " " + x.MiddleName)
+            //                        )
+            //                        );
 
-                return _output;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+            //Parallel.ForEach(_output, x =>
+            //x.FullName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(
+            //                string.IsNullOrEmpty(x.MiddleName) ? (x.LastName + ", " + x.FirstName)
+            //                        : (x.LastName + ", " + x.FirstName + " " + x.MiddleName)
+            //                        )
+            //                        );
+
+
+            return _output;
         }
     }
+
 }

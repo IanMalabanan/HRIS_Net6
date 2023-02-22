@@ -11,7 +11,7 @@ namespace HRIS.API.Controllers
     [ApiExplorerSettings(GroupName = "HRIS")]
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class EmployeeController : ApiControllerBase
     {
         [HttpGet]
@@ -20,7 +20,7 @@ namespace HRIS.API.Controllers
         {
             try
             {
-                var _result = await Mediator.Send(new GetEmployeeByEmpIDQuery() { });
+                var _result = await Mediator.Send(new GetEmployeesQuery() { });
 
                 return Ok(_result);
             }

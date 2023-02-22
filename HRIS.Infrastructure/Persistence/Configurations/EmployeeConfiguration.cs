@@ -47,8 +47,6 @@ namespace HRIS.Infrastructure.Persistence.Configurations
 
             builder.Property(t=> t.DateOfBirth).IsRequired();
 
-            builder.Property(t => t.DateOfBirth).IsRequired();
-
             builder.Property(t => t.DateCreated).IsRequired();
 
             builder.Property(t => t.CreatedBy)
